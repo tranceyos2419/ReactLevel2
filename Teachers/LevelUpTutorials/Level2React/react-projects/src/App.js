@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 
 import Toggle from './ToggleRPC';
-import Portal from './Portal';
+import Modal from './Modal';
+
 
 const App = () => (
   <div className="App">
@@ -14,9 +15,10 @@ const App = () => (
     <Toggle>
       {({ on, toggle }) => (
         <Fragment>
-          {on && <h1>show me</h1>}
-          <button onClick={toggle}>Show/Hide</button>
-          <Portal>{on && <h1>Portal</h1>}</Portal>
+          <button onClick={toggle}>Login</button>
+          <Modal on={on} toggle={toggle}>
+            <h1>stil in modal</h1>
+          </Modal>
         </Fragment>
       )}
     </Toggle>

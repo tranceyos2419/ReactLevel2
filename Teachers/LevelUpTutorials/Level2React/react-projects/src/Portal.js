@@ -25,5 +25,5 @@ export default class Portal extends Component {
 }
 
 Portal.propTypes = {
-  children: PropTypes.instanceOf(Element).isRequired,
+  children: PropTypes.object.isRequired,
 };
