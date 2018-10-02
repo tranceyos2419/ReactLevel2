@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,10 +13,10 @@ const App = () => (
     </header>
     <Toggle>
       {({ on, toggle }) => (
-        <div>
+        <Fragment>
           {on && <h1>show me</h1>}
           <button onClick={toggle}>Show/Hide</button>
-        </div>
+        </Fragment>
       )}
     </Toggle>
   </div>
