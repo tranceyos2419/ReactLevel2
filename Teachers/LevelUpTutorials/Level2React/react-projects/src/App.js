@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Toggle from './ToggleRPC';
-
+import Portal from './Portal';
 
 const App = () => (
   <div className="App">
@@ -16,6 +16,7 @@ const App = () => (
         <Fragment>
           {on && <h1>show me</h1>}
           <button onClick={toggle}>Show/Hide</button>
+          <Portal>{on && <h1>Portal</h1>}</Portal>
         </Fragment>
       )}
     </Toggle>
