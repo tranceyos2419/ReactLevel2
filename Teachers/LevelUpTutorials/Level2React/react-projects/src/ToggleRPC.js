@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 
 export default class ToggleRPC extends Component {
     state = {
-      on: true,
+      on: false,
     }
 
     toggle = () => {
