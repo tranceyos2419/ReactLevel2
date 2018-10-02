@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 
 export default class ToggleRenderProps extends Component {
     state = {
-      on: false,
+      on: true,
     }
 
     toggle = () => {
@@ -12,6 +13,7 @@ export default class ToggleRenderProps extends Component {
 
     render() {
       const { on } = this.state;
+      const { render } = this.props;
       return (
             <div>
                 {render({
@@ -22,3 +24,7 @@ export default class ToggleRenderProps extends Component {
       );
     }
 }
+
+ToggleRenderProps.propTypes = {
+  render: PropTypes.func.isRequired,
+};
