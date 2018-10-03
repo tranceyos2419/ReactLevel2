@@ -26,9 +26,9 @@ const App = () => (
             <Fragment>
               <button onClick={toggle}>Show/Hide</button>
               <Transition
-                from={{ opacity: 0 }}
-                enter={{ opacity: 1 }}
-                leave={{ opacity: 0 }}
+                from={{ opacity: 0, height: '0px', bg: '#000000' }}
+                enter={{ opacity: 1, height: '200px', bg: '#ffffff' }}
+                leave={{ opacity: 0, height: '0px', bg: '#000000' }}
               >
                 {on && Header}
 
@@ -53,8 +53,17 @@ const App = () => (
 );
 
 const Header = styles => (
-  <Card style={{ ...styles }}>
+  // <Card style={{ ...styles }}>
+  <Card style={{
+    opacity: styles.opacity,
+    height: styles.height,
+    overflow: 'hidden',
+    background: styles.bg,
+  }}
+  >
     <h1>Show me</h1>
+    {/* <h3>{styles.opacity}</h3> */}
+    <h3>{styles.bg}</h3>
   </Card>
 );
 
