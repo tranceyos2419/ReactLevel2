@@ -26,6 +26,7 @@ module.exports = {
         "function-paren-newline": 0,
         "linebreak-style": 0,
         "react/jsx-indent": 0,
-        "react/button-has-type": 0
+        "react/button-has-type": 0,
+        "react/forbid-prop-types": 0
     }
 };

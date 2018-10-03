@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Component } from 'react';
+import { PropTypes } from 'prop-types';
 
-export default class Toggle extends Component {
+export default class ToggleRPC extends Component {
     state = {
       on: false,
     }
@@ -14,16 +14,13 @@ export default class Toggle extends Component {
     render() {
       const { on } = this.state;
       const { children } = this.props;
-      return (
-            <div>
-                {on && children}
-                <button onClick={this.toggle}>Show/Hide</button>
-            </div>
-      );
+      return children({
+        on,
+        toggle: this.toggle,
+      });
     }
 }
 
-
-Toggle.propTypes = {
-  children: PropTypes.instanceOf(Element).isRequired,
+ToggleRPC.propTypes = {
+  children: PropTypes.func.isRequired,
 };
