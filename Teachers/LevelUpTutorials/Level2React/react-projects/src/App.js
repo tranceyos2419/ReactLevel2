@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Toggle, Modal } from './Utilities/index';
 
+//* I think I should use Elements
+import { Toggle } from 'Utilities';
+import { Modal } from 'Elements';
+
+import logo from './logo.svg';
 
 const App = () => (
   <div className="App">
