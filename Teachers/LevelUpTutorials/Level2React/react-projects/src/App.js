@@ -1,9 +1,7 @@
 import React, { Fragment } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
-import Toggle from './Toggle';
-import Modal from './Modal';
+import { Toggle, Modal } from './Utilities/index';
 
 
 const App = () => (

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import Portal from './Portal';
-import Icon from './Utilities/Icon';
+import Icon from './Icon';
 
 const Modal = ({ children, on, toggle }) => (
     <Portal>
