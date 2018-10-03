@@ -9,11 +9,27 @@ export default class UserProvider extends Component {
     name: 'Yoshi',
   }
 
+  logout = () => {
+    this.setState({
+      name: '',
+    });
+  }
+
+  login = () => {
+    this.setState({
+      name: 'Yoshi',
+    });
+  }
+
   render() {
     const { children } = this.props;
     return (
       <UserContext.Provider
-        value={{ user: this.state }}
+        value={{
+          user: this.state,
+          logout: this.logout,
+          login: this.login,
+        }}
       >
         {children}
       </UserContext.Provider>

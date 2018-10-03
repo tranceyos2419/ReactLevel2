@@ -18,13 +18,13 @@ const App = () => (
         <img src={logo} className="App-logo" alt="logo" />
         <h1 className="App-title">Welcome to React</h1>
       </header>
-      <User />
+
       <Toggle>
         {({ on, toggle }) => (
           <Fragment>
-            <button onClick={toggle}>Login</button>
+            <button onClick={toggle}>User</button>
             <Modal on={on} toggle={toggle}>
-              <h1>stil in modal</h1>
+              <User />
             </Modal>
           </Fragment>
         )}
