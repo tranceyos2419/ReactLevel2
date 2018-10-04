@@ -43,7 +43,9 @@ const App = () => (
           <Fragment>
             <button onClick={toggle}>User</button>
             <Modal on={on} toggle={toggle}>
-              <User />
+              <Fragment>
+                <User />
+              </Fragment>
             </Modal>
           </Fragment>
         )}
