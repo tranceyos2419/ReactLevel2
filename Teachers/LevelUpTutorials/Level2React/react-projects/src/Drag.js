@@ -1,7 +1,11 @@
 import React from 'react';
 import { Gesture } from 'react-with-gesture';
-import { Spring, animated } from 'react-spring';
+import { Spring, animated, interpolate } from 'react-spring';
+import styled from 'styled-components';
+import { absolute } from 'Utilities';
 import { Card } from './Elements/Cards';
+
+const maxWith = '200px';
 
 const Drag = () => (
   <Gesture>
@@ -15,9 +19,26 @@ const Drag = () => (
         immediate={name => down && name === 'x'}
       >
         {({ x }) => (
-          <CardWithMaxWidth style={{ transform: x.interpolate(xt => `translatex(${xt}px)`) }}>
-            <h1>Drag me</h1>
-          </CardWithMaxWidth>
+          <ModalWrapper>
+            <CardContainer maxWith={maxWith}>
+              <DragCard
+                maxWith={maxWith}
+                style={{
+                  // in the array, the first x goes as position x, the second x goes as rotate value rotate, both x come from  <Spring>
+                  transform: interpolate(
+                    [x,
+                      x.interpolate({
+                        range: [-300, 300],
+                        output: [-360, 360],
+                        extrapolate: 'clamp',
+                      })],
+                    (x, rotate) => `translateX(${x}px) rotate(${rotate}deg)`),
+                }}
+              >
+                <h1>Drag me</h1>
+              </DragCard>
+            </CardContainer>
+          </ModalWrapper>
         )}
       </Spring>
 
@@ -29,10 +50,29 @@ export default Drag;
 
 const NativeCard = Card.withComponent(animated.div);
 
-const CardWithMaxWidth = NativeCard.extend`
-max-width:320px;
+const DragCard = NativeCard.extend`
+max-width:${props => props.maxWith};
 margin: 0 auto;
+height: 50px;
 `;
+
+const ModalWrapper = styled.div`
+${absolute({})}
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+            `;
+
+
+const CardContainer = styled.div`
+position:relative;
+background:#ccc;
+max-width:${props => props.maxWith};
+margin:0 auto;
+border-radius:5px;`;
+
 
 { /* <Gesture>
 {({
