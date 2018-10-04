@@ -1,6 +1,6 @@
 import React from 'react';
 import { Gesture } from 'react-with-gesture';
-import { Spring, animated, interpolate } from 'react-spring';
+import { Spring, animated } from 'react-spring';
 import { Card } from './Elements/Cards';
 
 const Drag = () => (
@@ -8,13 +8,14 @@ const Drag = () => (
     {({ down, xDelta }) => (
 
       <Spring
+        native
         to={{
           x: down ? xDelta : 0,
         }}
         immediate={name => down && name === 'x'}
       >
         {({ x }) => (
-          <CardWithMaxWidth style={{ transform: `translatex(${x}px)` }}>
+          <CardWithMaxWidth style={{ transform: x.interpolate(xt => `translatex(${xt}px)`) }}>
             <h1>Drag me</h1>
           </CardWithMaxWidth>
         )}
@@ -26,7 +27,9 @@ const Drag = () => (
 
 export default Drag;
 
-const CardWithMaxWidth = Card.extend`
+const NativeCard = Card.withComponent(animated.div);
+
+const CardWithMaxWidth = NativeCard.extend`
 max-width:320px;
 margin: 0 auto;
 `;
