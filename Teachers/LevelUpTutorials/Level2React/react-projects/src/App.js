@@ -10,6 +10,7 @@ import { UserProvider } from 'Contexts';
 import User from './User';
 
 import logo from './logo.svg';
+import Drag from './Drag';
 
 
 const App = () => (
@@ -31,25 +32,31 @@ const App = () => (
                 leave={{ opacity: 0, height: '0px', bg: '#ffab00' }}
               >
                 {on && Header}
-
               </Transition>
             </Fragment>
           )}
         </Toggle>
       </section>
 
-      <Toggle>
-        {({ on, toggle }) => (
-          <Fragment>
-            <button onClick={toggle}>User</button>
-            <Modal on={on} toggle={toggle}>
-              <Fragment>
-                <User />
-              </Fragment>
-            </Modal>
-          </Fragment>
-        )}
-      </Toggle>
+      <section>
+        <Toggle>
+          {({ on, toggle }) => (
+            <Fragment>
+              <button onClick={toggle}>User</button>
+              <Modal on={on} toggle={toggle}>
+                <Fragment>
+                  <User />
+                </Fragment>
+              </Modal>
+            </Fragment>
+          )}
+        </Toggle>
+      </section>
+
+      <section>
+        <Drag />
+      </section>
+
     </UserProvider>
   </div>
 );
