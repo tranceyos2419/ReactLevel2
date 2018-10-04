@@ -26,9 +26,9 @@ const App = () => (
             <Fragment>
               <button onClick={toggle}>Show/Hide</button>
               <Transition
-                from={{ opacity: 0, height: '0px', bg: '#000000' }}
-                enter={{ opacity: 1, height: '200px', bg: '#ffffff' }}
-                leave={{ opacity: 0, height: '0px', bg: '#000000' }}
+                from={{ opacity: 0, height: '0px', bg: '#ffab00' }}
+                enter={{ opacity: 1, height: '200px', bg: '#900203' }}
+                leave={{ opacity: 0, height: '0px', bg: '#ffab00' }}
               >
                 {on && Header}
 

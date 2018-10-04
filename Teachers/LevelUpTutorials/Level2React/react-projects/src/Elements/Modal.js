@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 //* I think I should use relative path.
-import { Portal } from 'Utilities';
+import { Portal, absolute } from 'Utilities';
 import Icon from './Icon';
 import { Card } from './Cards';
 
@@ -33,9 +33,7 @@ Modal.propTypes = {
 };
 
 const ModalWrapper = styled.div`
-position:absolute;
-top: 0;
-left: 0;
+${absolute({})}
 width:100%;
 height:100%;
 display:flex;
@@ -51,20 +49,16 @@ margin-bottom:100px;
 `;
 
 const CloseButton = styled.button`
-position:absolute;
-top:0;
-right:0;
+${absolute({ x: 'right' })}
 border:none;
 background:transparent;
 padding:10px;
 `;
 
 const Background = styled.div`
-position:absolute;
+${absolute({})}
 width: 100%;
 height:100%;
-top:0;
-left:0;
 background:black;
 opacity:0.5;
 `;
