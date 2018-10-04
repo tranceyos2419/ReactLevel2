@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Gesture } from 'react-with-gesture';
 import { Spring, animated, interpolate } from 'react-spring';
 import styled from 'styled-components';
@@ -7,60 +7,75 @@ import { Card } from './Elements/Cards';
 
 const maxWith = '200px';
 
-const Drag = () => (
-  <Gesture>
-    {({ down, xDelta }) => (
+export default class Drag extends Component {
+  // if I write function like this, it is not executed when it's called
+  onUp = xDelta => () => {
+    console.log(xDelta);
+    if (xDelta < -300) {
+      alert('Remove Card');
+    } else if (xDelta > 300) {
+      alert('Add Card');
+    }
+  }
 
-      <Spring
-        native
-        to={{
-          x: down ? xDelta : 0,
-        }}
-        immediate={name => down && name === 'x'}
-      >
-        {({ x }) => (
-          <ModalWrapper>
-            <CardContainer
-              maxWith={maxWith}
-              style={{
-                background: x.interpolate({
-                  range: [-300, 300],
-                  output: ['#fff323', '#9A3D02'],
-                  extrapolate: 'clamp',
-                }),
-              }}
-            >
-              <DragCard
-                maxWith={maxWith}
-                style={{
-                  opacity: x.interpolate({
-                    range: [-300, 300],
-                    output: [0.5, 1],
-                    extrapolate: 'clamp',
-                  }),
-                  // in the array, the first x goes as position x, the second x goes as rotate value rotate, both x come from  <Spring>
-                  transform: interpolate(
-                    [x,
-                      x.interpolate({
+  render() {
+    return (
+      <Gesture>
+        {({ down, xDelta }) => (
+
+          <Spring
+            native
+            to={{
+              x: down ? xDelta : 0,
+            }}
+            immediate={name => down && name === 'x'}
+          >
+            {({ x }) => (
+              <ModalWrapper>
+                <CardContainer
+                  maxWith={maxWith}
+                  style={{
+                    background: x.interpolate({
+                      range: [-300, 300],
+                      output: ['#fff323', '#9A3D02'],
+                      extrapolate: 'clamp',
+                    }),
+                  }}
+                >
+                  <DragCard
+                    onMouseUp={this.onUp(xDelta)} // for desktop
+                    onTouchEnd={this.onUp(xDelta)} // for mobile
+                    maxWith={maxWith}
+                    style={{
+                      opacity: x.interpolate({
                         range: [-300, 300],
-                        output: [-360, 360],
+                        output: [0.5, 1],
                         extrapolate: 'clamp',
-                      })],
-                    (x, rotate) => `translateX(${x}px) rotate(${rotate}deg)`),
-                }}
-              >
-                <h1>Drag me</h1>
-              </DragCard>
-            </CardContainer>
-          </ModalWrapper>
+                      }),
+                      // in the array, the first x goes as position x, the second x goes as rotate value rotate, both x come from  <Spring>
+                      transform: interpolate(
+                        [x,
+                          x.interpolate({
+                            range: [-300, 300],
+                            output: [-360, 360],
+                            extrapolate: 'clamp',
+                          })],
+                        (x, rotate) => `translateX(${x}px) rotate(${rotate}deg)`),
+                    }}
+                  >
+                    <h1>Drag me</h1>
+                  </DragCard>
+                </CardContainer>
+              </ModalWrapper>
+            )}
+          </Spring>
+
         )}
-      </Spring>
+      </Gesture>
 
-    )}
-  </Gesture>
-);
-
-export default Drag;
+    );
+  }
+}
 
 const NativeCard = Card.withComponent(animated.div);
 
