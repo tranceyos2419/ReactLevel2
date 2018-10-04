@@ -20,10 +20,24 @@ const Drag = () => (
       >
         {({ x }) => (
           <ModalWrapper>
-            <CardContainer maxWith={maxWith}>
+            <CardContainer
+              maxWith={maxWith}
+              style={{
+                background: x.interpolate({
+                  range: [-300, 300],
+                  output: ['#fff323', '#9A3D02'],
+                  extrapolate: 'clamp',
+                }),
+              }}
+            >
               <DragCard
                 maxWith={maxWith}
                 style={{
+                  opacity: x.interpolate({
+                    range: [-300, 300],
+                    output: [0.5, 1],
+                    extrapolate: 'clamp',
+                  }),
                   // in the array, the first x goes as position x, the second x goes as rotate value rotate, both x come from  <Spring>
                   transform: interpolate(
                     [x,
@@ -66,7 +80,7 @@ align-items:center;
             `;
 
 
-const CardContainer = styled.div`
+const CardContainer = styled(animated.div)`
 position:relative;
 background:#ccc;
 max-width:${props => props.maxWith};
